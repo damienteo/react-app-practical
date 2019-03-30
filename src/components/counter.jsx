@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+    if (prevProps.counter.value !== this.props.counter.value) {
+      console.group("update");
+    }
+  }
+
   styles = {
     fontSize: "10px",
     fontWeight: "bold"
   };
 
   render() {
+    console.log("Counter rendered");
     const { count, tags } = this.props.counter;
     const { id, value } = this.props.counter;
 

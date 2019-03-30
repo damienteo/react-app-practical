@@ -3,6 +3,16 @@ import Counters from "./components/counters";
 import NavBar from "./components/navbar";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    console.log("App - Constructor");
+  }
+
+  componentDidMount() {
+    //ajax call
+    console.log("App mounted");
+  }
+
   state = {
     counters: [
       { id: 1, value: 4 },
@@ -33,10 +43,11 @@ class App extends React.Component {
     this.setState({ counters: counters });
   };
   render() {
+    console.log("App rendered");
     const { counters } = this.state;
     return (
       <React.Fragment>
-        <NavBar total={counters.length} />
+        <NavBar total={counters.filter(c => c.value > 0).length} />
         <main className="container">
           <Counters
             counters={counters}
